@@ -19,8 +19,14 @@ pipeline {
         }
 
         stage('Build Docker Image') {
+            when {
+                branch 'master'
+            }
             steps {
-                echo 'Building the docker image'
+                app = docker.build(DOCKER_IMAGE_NAME)
+                app.inside {
+                    sh 'echo Hello World'
+                }
             }
         }
 
