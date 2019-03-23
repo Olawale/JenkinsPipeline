@@ -34,7 +34,12 @@ pipeline {
 
         stage('Publish Docker Image'){
             steps {
-                echo 'Publishing the docker image'
+                script {
+                    docker.withRegistry('', 'docker_hub') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                    }
+                }
             }
         }
 
