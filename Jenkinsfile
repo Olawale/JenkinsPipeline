@@ -43,6 +43,13 @@ pipeline {
             }
         }
 
+        stage('Delete Docker Image'){
+            steps {
+                sh "docker rmi $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                sh "docker rmi $DOCKER_IMAGE_NAME:latest"
+            }
+        }
+
         stage('Deploy App to K8S Cluster') {
             steps {
                 echo 'deplyoing the app to K8S'
