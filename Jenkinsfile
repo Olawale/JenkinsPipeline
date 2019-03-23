@@ -3,11 +3,18 @@ pipeline {
 
     agent any
 
+    environment {
+        DOCKER_IMAGE_NAME = "laweee/spring-web-app"
+    }
+
     stages {
 
         stage('Build Application') {
             steps {
-                echo 'Building the application'
+                echo 'Building the web application'
+                sh './gradlew clean'
+                sh './gradlew build --no-daemon'
+                archiveArtifacts artifacts: 'build/libs/gs-serving-web-content-0.1.0.jar'
             }
         }
 
