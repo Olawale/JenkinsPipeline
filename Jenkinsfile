@@ -52,7 +52,9 @@ pipeline {
 
         stage('Deploy App to K8S Cluster') {
             steps {
-                echo 'deplyoing the app to K8S'
+                input 'Are you sure you want to deploy to Production?'
+                milestone(1)
+                echo 'Deploying to K8S'
             }
         }
     }
