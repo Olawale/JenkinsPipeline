@@ -57,7 +57,7 @@ pipeline {
                 echo 'Deploying to K8S'
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
-                    configs: 'k8s-deploy.yml',
+                    configs: 'k8s-deploy.yaml',
                     enableConfigSubstitution: true
                 )
             }
