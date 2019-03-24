@@ -55,6 +55,11 @@ pipeline {
                 input 'Are you sure you want to deploy to Production?'
                 milestone(1)
                 echo 'Deploying to K8S'
+                kubernetesDeploy(
+                    kubeconfigId: 'kubeconfig',
+                    configs: 'k8s-deploy.yml',
+                    enableConfigSubstitution: true
+                )
             }
         }
     }
